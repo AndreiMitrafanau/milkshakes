@@ -1,7 +1,11 @@
-@(message: String)
+@(message: String)(implicit flash: Flash)
+
 
 @main("Welcome to Play") {
-
-    @play20.welcome(message)
-
+<h2>Please specify an input file</h2>
+    <h3 style="color: red">@flash.get("error")</h3>
+    @helper.form(action = routes.Application.proceedFile(), 'enctype -> "multipart/form-data") {
+        <input type="file" name="input">
+        <p><input type="submit"></p>
+    }
 }
